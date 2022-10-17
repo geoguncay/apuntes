@@ -1,0 +1,365 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log($1);"
+		],
+		"description": "Log"
+  },
+
+
+	"Log a string": {
+    "prefix": "logs",
+    "body": ["console.log('$0');"
+	],
+    "description": "Log string"
+  },
+
+
+  "Log an object": {
+    "prefix": "logo",
+    "body": ["console.log('$1 :', JSON.stringify($1));"],
+    "description": "Log object"
+  },
+
+
+  "If log": {
+    "prefix": "iflog",
+    "body": ["if (${1:cond}) {", 
+		"console.log($0);", 
+		"}"],
+    "description": "if (x) log"
+  },
+
+  "If else": {
+    "prefix": "ifel",
+    "body": ["if ( ${1:cond} ) {", 
+		"  $2",
+    "}else{", 
+    "  $3",
+    "}"
+		],
+    "description": "if (x) eslse"
+  },
+
+  "JSON.stringify()": {
+    "prefix": "json",
+    "body": ["JSON.stringify($0)"],
+    "description": "JSON.stringify()"
+  },
+
+
+  "JSON.parse()": {
+    "prefix": "jsonp",
+    "body": ["JSON.parse($0)"],
+    "description": "JSON.parse()"
+  },
+
+
+  "setState((state) => ({..})": {
+    "prefix": "ss",
+    "body": ["this.setState(state => ({ $1 }));", "$0"],
+    "description": "this.setState(state => ({..}))"
+  },
+
+
+  "setState((state, props) => ({..})": {
+    "prefix": "ssp",
+    "body": ["this.setState((state, props) => ({ $1 }));", "$0"],
+    "description": "this.setState((state, props) => ({..}))"
+  },
+
+
+  "Test case": {
+    "prefix": "it",
+    "body": ["it('$1', () => {", " $0", "});"],
+    "description": "Jest test case"
+  },
+
+
+  "this.state.": {
+    "prefix": "ts",
+    "body": ["this.state."],
+    "description": "this.state."
+  },
+
+
+  "this.props.": {
+    "prefix": "tp",
+    "body": ["this.props."],
+    "description": "this.props."
+  },
+
+
+  "attr={..}": {
+    "prefix": "at",
+    "body": ["${1:attr}={${2:value}}$0"],
+    "description": "JSX attribute"
+  },
+
+
+  "Snapshot Test": {
+    "prefix": "snap",
+    "body": [
+      "",
+      "import renderer from 'react-test-renderer';",
+      "import $1 from './$1'",
+      "",
+      "it('renders $1 correctly', () => {",
+      "  const tree = renderer.create(",
+      "     <$1 $0/>",
+      "   ).toJSON();",
+      "expect(tree).toMatchSnapshot();",
+      "});",
+      ""
+    ],
+    "description": "Jest Snapshot test"
+  },
+
+
+  "Snapshot Test with React Router ": {
+    "prefix": "snapr",
+    "body": [
+      "",
+      "import renderer from 'react-test-renderer';",
+      "import StaticRouter from 'react-router-dom/StaticRouter';",
+      "import $1 from './$1'",
+      "",
+      "it('renders $1 form correctly', () => {",
+      " const tree = renderer.create(",
+      "  <StaticRouter context={{}}>",
+      "    <$1 $0 />",
+      "  </StaticRouter>",
+      " ).toJSON();",
+      " expect(tree).toMatchSnapshot();",
+      "});",
+      ""
+    ],
+    "description": "Jest Snapshot test with React Router"
+  },
+
+
+  "React Class": {
+    "prefix": "rclc",
+    "body": [
+      "",
+      "class ${1:${TM_FILENAME_BASE}} extends React.Component {",
+      "  render() {",
+      "    return (",
+      "      $0",
+      "    );",
+      "  }",
+      "",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};"
+    ],
+    "description": "React Class"
+  },
+
+  
+  "React Class with PropTypes": {
+    "prefix": "rccp",
+    "body": [
+      "",
+      "class ${1:${TM_FILENAME_BASE}} extends React.Component {",
+      " static propTypes = {}",
+      "",
+      " render() {",
+      "  return (",
+      "    $0",
+      "  );",
+      " }",
+      "",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};"
+    ],
+    "description": "React Class with PropTypes"
+  },
+  
+  
+  "React Stateless Functional Component": {
+    "prefix": "rafc",
+    "body": [
+      "",
+      "function ${1:${TM_FILENAME_BASE}} ($2) {",
+      " return (",
+      "   <>",
+      "     $3",
+      "   </>",
+      " );",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};"
+    ],
+    "description": "React Stateless Functional Component"
+  },
+
+
+  "React Arrow Funcion": {
+    "prefix": "raf",
+    "body": [
+      "$3",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      " return (",
+      "   <>",
+      "     $2",
+      "   </>",
+      " );",
+      "};",
+    "",
+    "export default ${1:${TM_FILENAME_BASE}};"
+    ],
+    "description": "React Arrow Funcion"
+  },
+
+
+
+  "React Stateless Functional Component with PropTypes": {
+    "prefix": "rsfcp",
+    "body": [
+      "import React, { PropTypes } from 'react';",
+      "",
+      "function $1 ($2) {",
+      "  return (",
+      "    $0",
+      "  );",
+      "}",
+      "",
+      "$1.propTypes = {}",
+      "",
+      "export default $1;"
+    ],
+    "description": "React Stateless Functional Component with PropTypes"
+  },
+
+  " Import React": {
+    "prefix": "ir",
+    "body": ["import React from 'react';"],
+    "description": "Import React"
+  },
+
+
+  "Import ReactDOM": {
+    "prefix": "ird",
+    "body": ["import ReactDOM from 'react-dom';"],
+    "description": "Import ReactDOM"
+  },
+
+  "React Router Link": {
+    "prefix": "irrl",
+    "body": ["import Link from 'react-router-dom';"],
+    "description": "React Router Link"
+  },
+
+
+  "React Router NavLink": {
+    "prefix": "irnl",
+    "body": ["import NavLink from 'react-router-dom';"],
+    "description": "React Router NavLink"
+  },
+
+
+  "Link to": {
+    "prefix": "lint",
+    "body": ["<Link to={'$2'}> $1 </Link>"],
+    "description": "Link to"
+  },
+
+
+	"React BrowserRouter": {
+    "prefix": "irbr",
+    "body": ["import BrowserRouter from 'react-router-dom;"],
+    "description": "React BrowserRouter"
+  },
+
+
+  "React Router Switch": {
+    "prefix": "irrs",
+    "body": ["import Switch from 'react-router-dom;"],
+    "description": "React Router Switch"
+  },
+
+
+  "React Route path": {
+    "prefix": "rrph",
+    "body": ["<Route path='$0' element={<$1 />}/>"],
+    "description": "React Route path"
+  },
+
+
+  "React Route index": {
+    "prefix": "rrpi",
+    "body": ["<Route index element={<$1 />}/>"],
+    "description": "React Route index"
+  },
+
+  "React Icons": {
+    "prefix": "irai",
+    "body": ["import { $1 } from 'react-icons$2 ';"],
+    "description": "React icons"
+  },
+
+
+  "React import CSS": {
+    "prefix": "icss",
+    "body": ["import '.$1'"],
+    "description": "Import CSS"
+  },
+
+  "React Router Route": {
+    "prefix": "irr",
+    "body": ["import Route from 'react-router-dom/Route';"],
+    "description": "React Router Route"
+  },
+
+
+  "React Router Redirect": {
+    "prefix": "irre",
+    "body": ["import Redirect from 'react-router-dom/Redirect';"],
+    "description": "React Router Redirect"
+  },
+
+
+  "Connect": {
+    "prefix": "conn",
+    "body": ["connect(state => ({ $0 })"],
+    "description": "Redux Connect"
+  },
+
+
+  "Const": {
+    "prefix": "cst",
+    "body": ["const $1 = $0 "],
+    "description": "Const"
+  },
+
+
+  "Funtion": {
+    "prefix": "ft",
+    "body": [ "function $1 ($2) {",
+    "  $3",
+    "  return $4",
+    "}"
+    ],
+    "description": "Const"
+  },
+
+
+  "Bucle for": {
+    "prefix": "bfor",
+    "body": ["for($1 ; $2; $3){",
+      "$0",
+    "}"
+    ],
+    "description": "Bucle for"
+  },
+
+
+  "DocumentGetById": {
+    "prefix": "dgi",
+    "body": ["document.getElementById('$1')"],
+    "description": "Document get by Id"
+  }
+}
